@@ -3,28 +3,28 @@ info:
   title: Aplikasi Penjualan (Unggul Solusi)
   version: 1.0.0
 servers:
-- url: "http://{{base_url}}"
+  - url: "http://unggul.njin.co.id"
 tags:
-- name: Auth
-- name: Product
-- name: Customer
-- name: Transaction (Penjualan)
+  - name: Auth
+  - name: Product
+  - name: Customer
+  - name: Transaction (Penjualan)
 paths:
   /api/auth:
     post:
       tags:
-      - Auth
+        - Auth
       summary: Login
       operationId: apiAuthPOST
       parameters:
-      - name: Accept
-        in: header
-        required: false
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: application/json
+        - name: Accept
+          in: header
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: application/json
       requestBody:
         content:
           application/json:
@@ -77,7 +77,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -94,18 +94,18 @@ paths:
       x-swagger-router-controller: Auth
     delete:
       tags:
-      - Auth
+        - Auth
       summary: Logout
       operationId: apiAuthDELETE
       parameters:
-      - name: Accept
-        in: header
-        required: false
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: application/json
+        - name: Accept
+          in: header
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: application/json
       responses:
         "200":
           description: OK
@@ -150,7 +150,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -164,33 +164,33 @@ paths:
                 created_at: 2025-01-23T15:26:55.000000Z
                 updated_at: 2025-01-23T15:26:55.000000Z
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       x-swagger-router-controller: Auth
   /api/product:
     get:
       tags:
-      - Product
+        - Product
       summary: List Product
       operationId: apiProductGET
       parameters:
-      - name: pageSize
-        in: query
-        description: "Optional, default: 100"
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        example: "100"
-      - name: page
-        in: query
-        description: "Optional, default: 1"
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        example: "1"
+        - name: pageSize
+          in: query
+          description: "Optional, default: 100"
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          example: "100"
+        - name: page
+          in: query
+          description: "Optional, default: 1"
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          example: "1"
       responses:
         "200":
           description: OK
@@ -235,7 +235,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -243,13 +243,13 @@ paths:
                 x-content-type: application/json
               example:
                 data:
-                - id: 1
-                  code: BRG_1
-                  name: PEN
-                  category: ATK
-                  price: 15000
-                  created_at: 2025-01-23T16:50:21.000000Z
-                  updated_at: 2025-01-23T16:50:21.000000Z
+                  - id: 1
+                    code: BRG_1
+                    name: PEN
+                    category: ATK
+                    price: 15000
+                    created_at: 2025-01-23T16:50:21.000000Z
+                    updated_at: 2025-01-23T16:50:21.000000Z
                 pagination:
                   page: 1
                   pageSize: 100
@@ -258,18 +258,18 @@ paths:
       x-swagger-router-controller: Product
     post:
       tags:
-      - Product
+        - Product
       summary: Create Product
       operationId: apiProductPOST
       parameters:
-      - name: Accept
-        in: header
-        required: false
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: application/json
+        - name: Accept
+          in: header
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: application/json
       requestBody:
         content:
           application/json:
@@ -324,7 +324,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -342,18 +342,18 @@ paths:
   /api/product/1:
     get:
       tags:
-      - Product
+        - Product
       summary: Show Product
       operationId: apiProduct1GET
       parameters:
-      - name: Accept
-        in: header
-        required: false
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: application/json
+        - name: Accept
+          in: header
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: application/json
       responses:
         "200":
           description: OK
@@ -398,7 +398,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -415,18 +415,18 @@ paths:
       x-swagger-router-controller: Product
     put:
       tags:
-      - Product
+        - Product
       summary: Update Product
       operationId: apiProduct1PUT
       parameters:
-      - name: Accept
-        in: header
-        required: false
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: application/json
+        - name: Accept
+          in: header
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: application/json
       requestBody:
         content:
           application/json:
@@ -481,7 +481,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -498,18 +498,18 @@ paths:
       x-swagger-router-controller: Product
     delete:
       tags:
-      - Product
+        - Product
       summary: Delete Product
       operationId: apiProduct1DELETE
       parameters:
-      - name: Accept
-        in: header
-        required: false
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: application/json
+        - name: Accept
+          in: header
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: application/json
       responses:
         "200":
           description: OK
@@ -554,7 +554,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -572,7 +572,7 @@ paths:
   /api/customer:
     get:
       tags:
-      - Customer
+        - Customer
       summary: List Customer
       operationId: apiCustomerGET
       responses:
@@ -619,7 +619,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -627,13 +627,13 @@ paths:
                 x-content-type: application/json
               example:
                 data:
-                - id: 1
-                  code: PELANGGAN_1
-                  name: ANDI
-                  address: JAK-UT
-                  gender: male
-                  created_at: 2025-01-23T17:43:02.000000Z
-                  updated_at: 2025-01-23T17:43:02.000000Z
+                  - id: 1
+                    code: PELANGGAN_1
+                    name: ANDI
+                    address: JAK-UT
+                    gender: male
+                    created_at: 2025-01-23T17:43:02.000000Z
+                    updated_at: 2025-01-23T17:43:02.000000Z
                 pagination:
                   page: 1
                   pageSize: 100
@@ -642,18 +642,18 @@ paths:
       x-swagger-router-controller: Customer
     post:
       tags:
-      - Customer
+        - Customer
       summary: Create Customer
       operationId: apiCustomerPOST
       parameters:
-      - name: Accept
-        in: header
-        required: false
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: application/json
+        - name: Accept
+          in: header
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: application/json
       requestBody:
         content:
           application/json:
@@ -708,7 +708,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -726,7 +726,7 @@ paths:
   /api/customer/1:
     get:
       tags:
-      - Customer
+        - Customer
       summary: Show Customer
       operationId: apiCustomer1GET
       responses:
@@ -773,7 +773,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -790,18 +790,18 @@ paths:
       x-swagger-router-controller: Customer
     put:
       tags:
-      - Customer
+        - Customer
       summary: Update Customer
       operationId: apiCustomer1PUT
       parameters:
-      - name: Accept
-        in: header
-        required: false
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: application/json
+        - name: Accept
+          in: header
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: application/json
       requestBody:
         content:
           application/json:
@@ -856,7 +856,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -873,7 +873,7 @@ paths:
       x-swagger-router-controller: Customer
     delete:
       tags:
-      - Customer
+        - Customer
       summary: Delete Customer
       operationId: apiCustomer1DELETE
       responses:
@@ -920,7 +920,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -938,7 +938,7 @@ paths:
   /api/transaction:
     get:
       tags:
-      - Transaction (Penjualan)
+        - Transaction (Penjualan)
       summary: List Transaction
       operationId: apiTransactionGET
       responses:
@@ -985,7 +985,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -993,68 +993,68 @@ paths:
                 x-content-type: application/json
               example:
                 data:
-                - id: 1
-                  receipt: NOTA_1
-                  customer_id: 2
-                  total: 30000
-                  created_at: 2025-01-23T18:41:38.000000Z
-                  updated_at: 2025-01-23T18:41:38.000000Z
-                  details:
                   - id: 1
-                    transaction_id: 1
-                    product_id: 2
-                    price: 15000
-                    quantity: 2
-                    subtotal: 30000
+                    receipt: NOTA_1
+                    customer_id: 2
+                    total: 30000
                     created_at: 2025-01-23T18:41:38.000000Z
                     updated_at: 2025-01-23T18:41:38.000000Z
-                    product:
+                    details:
+                      - id: 1
+                        transaction_id: 1
+                        product_id: 2
+                        price: 15000
+                        quantity: 2
+                        subtotal: 30000
+                        created_at: 2025-01-23T18:41:38.000000Z
+                        updated_at: 2025-01-23T18:41:38.000000Z
+                        product:
+                          id: 2
+                          code: BRG_1
+                          name: PEN
+                          category: ATK
+                          price: 15000
+                          created_at: 2025-01-23T18:25:50.000000Z
+                          updated_at: 2025-01-23T18:25:50.000000Z
+                    customer:
                       id: 2
-                      code: BRG_1
-                      name: PEN
-                      category: ATK
-                      price: 15000
-                      created_at: 2025-01-23T18:25:50.000000Z
-                      updated_at: 2025-01-23T18:25:50.000000Z
-                  customer:
-                    id: 2
-                    code: PELANGGAN_1
-                    name: ANDI
-                    address: JAK-UT
-                    gender: male
-                    created_at: 2025-01-23T18:22:56.000000Z
-                    updated_at: 2025-01-23T18:22:56.000000Z
-                - id: 3
-                  receipt: NOTA_2
-                  customer_id: 2
-                  total: 30000
-                  created_at: 2025-01-23T18:43:40.000000Z
-                  updated_at: 2025-01-23T18:43:40.000000Z
-                  details:
-                  - id: 2
-                    transaction_id: 3
-                    product_id: 2
-                    price: 15000
-                    quantity: 2
-                    subtotal: 30000
+                      code: PELANGGAN_1
+                      name: ANDI
+                      address: JAK-UT
+                      gender: male
+                      created_at: 2025-01-23T18:22:56.000000Z
+                      updated_at: 2025-01-23T18:22:56.000000Z
+                  - id: 3
+                    receipt: NOTA_2
+                    customer_id: 2
+                    total: 30000
                     created_at: 2025-01-23T18:43:40.000000Z
                     updated_at: 2025-01-23T18:43:40.000000Z
-                    product:
+                    details:
+                      - id: 2
+                        transaction_id: 3
+                        product_id: 2
+                        price: 15000
+                        quantity: 2
+                        subtotal: 30000
+                        created_at: 2025-01-23T18:43:40.000000Z
+                        updated_at: 2025-01-23T18:43:40.000000Z
+                        product:
+                          id: 2
+                          code: BRG_1
+                          name: PEN
+                          category: ATK
+                          price: 15000
+                          created_at: 2025-01-23T18:25:50.000000Z
+                          updated_at: 2025-01-23T18:25:50.000000Z
+                    customer:
                       id: 2
-                      code: BRG_1
-                      name: PEN
-                      category: ATK
-                      price: 15000
-                      created_at: 2025-01-23T18:25:50.000000Z
-                      updated_at: 2025-01-23T18:25:50.000000Z
-                  customer:
-                    id: 2
-                    code: PELANGGAN_1
-                    name: ANDI
-                    address: JAK-UT
-                    gender: male
-                    created_at: 2025-01-23T18:22:56.000000Z
-                    updated_at: 2025-01-23T18:22:56.000000Z
+                      code: PELANGGAN_1
+                      name: ANDI
+                      address: JAK-UT
+                      gender: male
+                      created_at: 2025-01-23T18:22:56.000000Z
+                      updated_at: 2025-01-23T18:22:56.000000Z
                 pagination:
                   page: 1
                   pageSize: 100
@@ -1063,18 +1063,18 @@ paths:
       x-swagger-router-controller: TransactionPenjualan
     post:
       tags:
-      - Transaction (Penjualan)
+        - Transaction (Penjualan)
       summary: Create Transaction
       operationId: apiTransactionPOST
       parameters:
-      - name: Accept
-        in: header
-        required: false
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: application/json
+        - name: Accept
+          in: header
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: application/json
       requestBody:
         content:
           application/json:
@@ -1084,8 +1084,8 @@ paths:
                 receipt: NOTA_2
                 customer_id: 2
                 details:
-                - product_id: 2
-                  quantity: 2
+                  - product_id: 2
+                    quantity: 2
       responses:
         "200":
           description: OK
@@ -1130,7 +1130,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -1144,30 +1144,30 @@ paths:
                 created_at: 2025-01-23T18:43:40.000000Z
                 id: 3
                 details:
-                - product_id: 2
-                  price: 15000
-                  quantity: 2
-                  subtotal: 30000
-                  transaction_id: 3
-                  updated_at: 2025-01-23T18:43:40.000000Z
-                  created_at: 2025-01-23T18:43:40.000000Z
-                  id: 2
+                  - product_id: 2
+                    price: 15000
+                    quantity: 2
+                    subtotal: 30000
+                    transaction_id: 3
+                    updated_at: 2025-01-23T18:43:40.000000Z
+                    created_at: 2025-01-23T18:43:40.000000Z
+                    id: 2
       x-swagger-router-controller: TransactionPenjualan
   /api/transaction/3:
     get:
       tags:
-      - Transaction (Penjualan)
+        - Transaction (Penjualan)
       summary: Show Transaction
       operationId: apiTransaction3GET
       parameters:
-      - name: Accept
-        in: header
-        required: false
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: application/json
+        - name: Accept
+          in: header
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: application/json
       responses:
         "200":
           description: OK
@@ -1212,7 +1212,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -1226,22 +1226,22 @@ paths:
                 created_at: 2025-01-23T18:43:40.000000Z
                 updated_at: 2025-01-23T18:43:40.000000Z
                 details:
-                - id: 2
-                  transaction_id: 3
-                  product_id: 2
-                  price: 15000
-                  quantity: 2
-                  subtotal: 30000
-                  created_at: 2025-01-23T18:43:40.000000Z
-                  updated_at: 2025-01-23T18:43:40.000000Z
-                  product:
-                    id: 2
-                    code: BRG_1
-                    name: PEN
-                    category: ATK
+                  - id: 2
+                    transaction_id: 3
+                    product_id: 2
                     price: 15000
-                    created_at: 2025-01-23T18:25:50.000000Z
-                    updated_at: 2025-01-23T18:25:50.000000Z
+                    quantity: 2
+                    subtotal: 30000
+                    created_at: 2025-01-23T18:43:40.000000Z
+                    updated_at: 2025-01-23T18:43:40.000000Z
+                    product:
+                      id: 2
+                      code: BRG_1
+                      name: PEN
+                      category: ATK
+                      price: 15000
+                      created_at: 2025-01-23T18:25:50.000000Z
+                      updated_at: 2025-01-23T18:25:50.000000Z
                 customer:
                   id: 2
                   code: PELANGGAN_1
@@ -1253,18 +1253,18 @@ paths:
       x-swagger-router-controller: TransactionPenjualan
     put:
       tags:
-      - Transaction (Penjualan)
+        - Transaction (Penjualan)
       summary: Update Transaction
       operationId: apiTransaction3PUT
       parameters:
-      - name: Accept
-        in: header
-        required: false
-        style: simple
-        explode: false
-        schema:
-          type: string
-        example: application/json
+        - name: Accept
+          in: header
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: application/json
       requestBody:
         content:
           application/json:
@@ -1274,9 +1274,9 @@ paths:
                 receipt: NOTA_2
                 customer_id: 2
                 details:
-                - id: 6
-                  product_id: 2
-                  quantity: 6
+                  - id: 6
+                    product_id: 2
+                    quantity: 6
       responses:
         "200":
           description: OK
@@ -1321,7 +1321,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -1335,14 +1335,14 @@ paths:
                 created_at: 2025-01-23T18:43:40.000000Z
                 updated_at: 2025-01-24T05:20:30.000000Z
                 details:
-                - id: 6
-                  transaction_id: 3
-                  product_id: 2
-                  price: 15000
-                  quantity: 6
-                  subtotal: 90000
-                  created_at: 2025-01-24T05:17:22.000000Z
-                  updated_at: 2025-01-24T05:20:30.000000Z
+                  - id: 6
+                    transaction_id: 3
+                    product_id: 2
+                    price: 15000
+                    quantity: 6
+                    subtotal: 90000
+                    created_at: 2025-01-24T05:17:22.000000Z
+                    updated_at: 2025-01-24T05:20:30.000000Z
                 customer:
                   id: 2
                   code: PELANGGAN_1
@@ -1355,7 +1355,7 @@ paths:
   /api/transaction/1:
     delete:
       tags:
-      - Transaction (Penjualan)
+        - Transaction (Penjualan)
       summary: Delete Transaction
       operationId: apiTransaction1DELETE
       responses:
@@ -1402,7 +1402,7 @@ paths:
               explode: false
               schema:
                 type: string
-                example: '*'
+                example: "*"
           content:
             application/json:
               schema:
@@ -1416,22 +1416,22 @@ paths:
                 created_at: 2025-01-23T18:41:38.000000Z
                 updated_at: 2025-01-23T18:41:38.000000Z
                 details:
-                - id: 1
-                  transaction_id: 1
-                  product_id: 2
-                  price: 15000
-                  quantity: 2
-                  subtotal: 30000
-                  created_at: 2025-01-23T18:41:38.000000Z
-                  updated_at: 2025-01-23T18:41:38.000000Z
-                  product:
-                    id: 2
-                    code: BRG_1
-                    name: PEN
-                    category: ATK
+                  - id: 1
+                    transaction_id: 1
+                    product_id: 2
                     price: 15000
-                    created_at: 2025-01-23T18:25:50.000000Z
-                    updated_at: 2025-01-23T18:25:50.000000Z
+                    quantity: 2
+                    subtotal: 30000
+                    created_at: 2025-01-23T18:41:38.000000Z
+                    updated_at: 2025-01-23T18:41:38.000000Z
+                    product:
+                      id: 2
+                      code: BRG_1
+                      name: PEN
+                      category: ATK
+                      price: 15000
+                      created_at: 2025-01-23T18:25:50.000000Z
+                      updated_at: 2025-01-23T18:25:50.000000Z
                 customer:
                   id: 2
                   code: PELANGGAN_1
@@ -1444,7 +1444,7 @@ paths:
   /api/stats:
     get:
       tags:
-      - default
+        - default
       summary: Stats
       operationId: apiStatsGET
       responses:
@@ -1453,7 +1453,7 @@ paths:
           content:
             application/json: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       x-swagger-router-controller: Default
 components:
   schemas: {}
