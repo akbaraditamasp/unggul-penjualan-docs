@@ -1,0 +1,1463 @@
+openapi: 3.0.0
+info:
+  title: Aplikasi Penjualan (Unggul Solusi)
+  version: 1.0.0
+servers:
+- url: "http://{{base_url}}"
+tags:
+- name: Auth
+- name: Product
+- name: Customer
+- name: Transaction (Penjualan)
+paths:
+  /api/auth:
+    post:
+      tags:
+      - Auth
+      summary: Login
+      operationId: apiAuthPOST
+      parameters:
+      - name: Accept
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: admin@unggulsolusi.com
+                password: "123456"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Thu, 23 Jan 2025 15:35:59 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                id: 1
+                name: Test User
+                email: admin@unggulsolusi.com
+                email_verified_at: 2025-01-23T15:26:55.000000Z
+                created_at: 2025-01-23T15:26:55.000000Z
+                updated_at: 2025-01-23T15:26:55.000000Z
+                token: 5|OPfecqfubUujQPNd17WeVSdxvw43xQRDkmiZskyB5eae686a
+      x-swagger-router-controller: Auth
+    delete:
+      tags:
+      - Auth
+      summary: Logout
+      operationId: apiAuthDELETE
+      parameters:
+      - name: Accept
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Thu, 23 Jan 2025 15:37:17 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                id: 1
+                name: Test User
+                email: admin@unggulsolusi.com
+                email_verified_at: 2025-01-23T15:26:55.000000Z
+                created_at: 2025-01-23T15:26:55.000000Z
+                updated_at: 2025-01-23T15:26:55.000000Z
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Auth
+  /api/product:
+    get:
+      tags:
+      - Product
+      summary: List Product
+      operationId: apiProductGET
+      parameters:
+      - name: pageSize
+        in: query
+        description: "Optional, default: 100"
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+        example: "100"
+      - name: page
+        in: query
+        description: "Optional, default: 1"
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+        example: "1"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Thu, 23 Jan 2025 17:09:31 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                data:
+                - id: 1
+                  code: BRG_1
+                  name: PEN
+                  category: ATK
+                  price: 15000
+                  created_at: 2025-01-23T16:50:21.000000Z
+                  updated_at: 2025-01-23T16:50:21.000000Z
+                pagination:
+                  page: 1
+                  pageSize: 100
+                  pageCount: 1
+                  total: 1
+      x-swagger-router-controller: Product
+    post:
+      tags:
+      - Product
+      summary: Create Product
+      operationId: apiProductPOST
+      parameters:
+      - name: Accept
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                code: BRG_1
+                name: PEN
+                category: ATK
+                price: 15000
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Thu, 23 Jan 2025 16:50:21 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                code: BRG_1
+                name: PEN
+                category: ATK
+                price: 15000
+                updated_at: 2025-01-23T16:50:21.000000Z
+                created_at: 2025-01-23T16:50:21.000000Z
+                id: 1
+      x-swagger-router-controller: Product
+  /api/product/1:
+    get:
+      tags:
+      - Product
+      summary: Show Product
+      operationId: apiProduct1GET
+      parameters:
+      - name: Accept
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Thu, 23 Jan 2025 17:13:39 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                id: 1
+                code: BRG_1
+                name: PEN
+                category: ATK
+                price: 15000
+                created_at: 2025-01-23T16:50:21.000000Z
+                updated_at: 2025-01-23T16:50:21.000000Z
+      x-swagger-router-controller: Product
+    put:
+      tags:
+      - Product
+      summary: Update Product
+      operationId: apiProduct1PUT
+      parameters:
+      - name: Accept
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                code: BRG_1
+                name: PEN
+                category: ATK
+                price: 16000
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Thu, 23 Jan 2025 17:16:04 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                id: 1
+                code: BRG_1
+                name: PEN
+                category: ATK
+                price: 16000
+                created_at: 2025-01-23T16:50:21.000000Z
+                updated_at: 2025-01-23T17:16:04.000000Z
+      x-swagger-router-controller: Product
+    delete:
+      tags:
+      - Product
+      summary: Delete Product
+      operationId: apiProduct1DELETE
+      parameters:
+      - name: Accept
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Thu, 23 Jan 2025 17:20:51 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                id: 1
+                code: BRG_1
+                name: PEN
+                category: ATK
+                price: 16000
+                created_at: 2025-01-23T16:50:21.000000Z
+                updated_at: 2025-01-23T17:16:04.000000Z
+      x-swagger-router-controller: Product
+  /api/customer:
+    get:
+      tags:
+      - Customer
+      summary: List Customer
+      operationId: apiCustomerGET
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Thu, 23 Jan 2025 17:44:29 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                data:
+                - id: 1
+                  code: PELANGGAN_1
+                  name: ANDI
+                  address: JAK-UT
+                  gender: male
+                  created_at: 2025-01-23T17:43:02.000000Z
+                  updated_at: 2025-01-23T17:43:02.000000Z
+                pagination:
+                  page: 1
+                  pageSize: 100
+                  pageCount: 1
+                  total: 1
+      x-swagger-router-controller: Customer
+    post:
+      tags:
+      - Customer
+      summary: Create Customer
+      operationId: apiCustomerPOST
+      parameters:
+      - name: Accept
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                code: PELANGGAN_1
+                name: ANDI
+                address: JAK-UT
+                gender: male
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Thu, 23 Jan 2025 17:43:02 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                code: PELANGGAN_1
+                name: ANDI
+                address: JAK-UT
+                gender: male
+                updated_at: 2025-01-23T17:43:02.000000Z
+                created_at: 2025-01-23T17:43:02.000000Z
+                id: 1
+      x-swagger-router-controller: Customer
+  /api/customer/1:
+    get:
+      tags:
+      - Customer
+      summary: Show Customer
+      operationId: apiCustomer1GET
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Thu, 23 Jan 2025 17:45:40 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                id: 1
+                code: PELANGGAN_1
+                name: ANDI
+                address: JAK-UT
+                gender: male
+                created_at: 2025-01-23T17:43:02.000000Z
+                updated_at: 2025-01-23T17:43:02.000000Z
+      x-swagger-router-controller: Customer
+    put:
+      tags:
+      - Customer
+      summary: Update Customer
+      operationId: apiCustomer1PUT
+      parameters:
+      - name: Accept
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                code: PELANGGAN_1
+                name: ANDI
+                address: JAK-UT
+                gender: male
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Thu, 23 Jan 2025 17:47:53 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                id: 1
+                code: PELANGGAN_1
+                name: ANDI
+                address: JAK-UT
+                gender: male
+                created_at: 2025-01-23T17:43:02.000000Z
+                updated_at: 2025-01-23T17:43:02.000000Z
+      x-swagger-router-controller: Customer
+    delete:
+      tags:
+      - Customer
+      summary: Delete Customer
+      operationId: apiCustomer1DELETE
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Thu, 23 Jan 2025 17:49:26 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                id: 1
+                code: PELANGGAN_1
+                name: ANDI
+                address: JAK-UT
+                gender: male
+                created_at: 2025-01-23T17:43:02.000000Z
+                updated_at: 2025-01-23T17:43:02.000000Z
+      x-swagger-router-controller: Customer
+  /api/transaction:
+    get:
+      tags:
+      - Transaction (Penjualan)
+      summary: List Transaction
+      operationId: apiTransactionGET
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Thu, 23 Jan 2025 18:53:16 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                data:
+                - id: 1
+                  receipt: NOTA_1
+                  customer_id: 2
+                  total: 30000
+                  created_at: 2025-01-23T18:41:38.000000Z
+                  updated_at: 2025-01-23T18:41:38.000000Z
+                  details:
+                  - id: 1
+                    transaction_id: 1
+                    product_id: 2
+                    price: 15000
+                    quantity: 2
+                    subtotal: 30000
+                    created_at: 2025-01-23T18:41:38.000000Z
+                    updated_at: 2025-01-23T18:41:38.000000Z
+                    product:
+                      id: 2
+                      code: BRG_1
+                      name: PEN
+                      category: ATK
+                      price: 15000
+                      created_at: 2025-01-23T18:25:50.000000Z
+                      updated_at: 2025-01-23T18:25:50.000000Z
+                  customer:
+                    id: 2
+                    code: PELANGGAN_1
+                    name: ANDI
+                    address: JAK-UT
+                    gender: male
+                    created_at: 2025-01-23T18:22:56.000000Z
+                    updated_at: 2025-01-23T18:22:56.000000Z
+                - id: 3
+                  receipt: NOTA_2
+                  customer_id: 2
+                  total: 30000
+                  created_at: 2025-01-23T18:43:40.000000Z
+                  updated_at: 2025-01-23T18:43:40.000000Z
+                  details:
+                  - id: 2
+                    transaction_id: 3
+                    product_id: 2
+                    price: 15000
+                    quantity: 2
+                    subtotal: 30000
+                    created_at: 2025-01-23T18:43:40.000000Z
+                    updated_at: 2025-01-23T18:43:40.000000Z
+                    product:
+                      id: 2
+                      code: BRG_1
+                      name: PEN
+                      category: ATK
+                      price: 15000
+                      created_at: 2025-01-23T18:25:50.000000Z
+                      updated_at: 2025-01-23T18:25:50.000000Z
+                  customer:
+                    id: 2
+                    code: PELANGGAN_1
+                    name: ANDI
+                    address: JAK-UT
+                    gender: male
+                    created_at: 2025-01-23T18:22:56.000000Z
+                    updated_at: 2025-01-23T18:22:56.000000Z
+                pagination:
+                  page: 1
+                  pageSize: 100
+                  pageCount: 1
+                  total: 2
+      x-swagger-router-controller: TransactionPenjualan
+    post:
+      tags:
+      - Transaction (Penjualan)
+      summary: Create Transaction
+      operationId: apiTransactionPOST
+      parameters:
+      - name: Accept
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                receipt: NOTA_2
+                customer_id: 2
+                details:
+                - product_id: 2
+                  quantity: 2
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Thu, 23 Jan 2025 18:43:40 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                receipt: NOTA_2
+                total: 30000
+                customer_id: 2
+                updated_at: 2025-01-23T18:43:40.000000Z
+                created_at: 2025-01-23T18:43:40.000000Z
+                id: 3
+                details:
+                - product_id: 2
+                  price: 15000
+                  quantity: 2
+                  subtotal: 30000
+                  transaction_id: 3
+                  updated_at: 2025-01-23T18:43:40.000000Z
+                  created_at: 2025-01-23T18:43:40.000000Z
+                  id: 2
+      x-swagger-router-controller: TransactionPenjualan
+  /api/transaction/3:
+    get:
+      tags:
+      - Transaction (Penjualan)
+      summary: Show Transaction
+      operationId: apiTransaction3GET
+      parameters:
+      - name: Accept
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Fri, 24 Jan 2025 04:35:13 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                id: 3
+                receipt: NOTA_2
+                customer_id: 2
+                total: 30000
+                created_at: 2025-01-23T18:43:40.000000Z
+                updated_at: 2025-01-23T18:43:40.000000Z
+                details:
+                - id: 2
+                  transaction_id: 3
+                  product_id: 2
+                  price: 15000
+                  quantity: 2
+                  subtotal: 30000
+                  created_at: 2025-01-23T18:43:40.000000Z
+                  updated_at: 2025-01-23T18:43:40.000000Z
+                  product:
+                    id: 2
+                    code: BRG_1
+                    name: PEN
+                    category: ATK
+                    price: 15000
+                    created_at: 2025-01-23T18:25:50.000000Z
+                    updated_at: 2025-01-23T18:25:50.000000Z
+                customer:
+                  id: 2
+                  code: PELANGGAN_1
+                  name: ANDI
+                  address: JAK-UT
+                  gender: male
+                  created_at: 2025-01-23T18:22:56.000000Z
+                  updated_at: 2025-01-23T18:22:56.000000Z
+      x-swagger-router-controller: TransactionPenjualan
+    put:
+      tags:
+      - Transaction (Penjualan)
+      summary: Update Transaction
+      operationId: apiTransaction3PUT
+      parameters:
+      - name: Accept
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                receipt: NOTA_2
+                customer_id: 2
+                details:
+                - id: 6
+                  product_id: 2
+                  quantity: 6
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Fri, 24 Jan 2025 05:20:30 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                id: 3
+                receipt: NOTA_2
+                customer_id: 2
+                total: 90000
+                created_at: 2025-01-23T18:43:40.000000Z
+                updated_at: 2025-01-24T05:20:30.000000Z
+                details:
+                - id: 6
+                  transaction_id: 3
+                  product_id: 2
+                  price: 15000
+                  quantity: 6
+                  subtotal: 90000
+                  created_at: 2025-01-24T05:17:22.000000Z
+                  updated_at: 2025-01-24T05:20:30.000000Z
+                customer:
+                  id: 2
+                  code: PELANGGAN_1
+                  name: ANDI
+                  address: JAK-UT
+                  gender: male
+                  created_at: 2025-01-23T18:22:56.000000Z
+                  updated_at: 2025-01-23T18:22:56.000000Z
+      x-swagger-router-controller: TransactionPenjualan
+  /api/transaction/1:
+    delete:
+      tags:
+      - Transaction (Penjualan)
+      summary: Delete Transaction
+      operationId: apiTransaction1DELETE
+      responses:
+        "200":
+          description: OK
+          headers:
+            Host:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: localhost:8000
+            Connection:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: close
+            X-Powered-By:
+              style: simple
+              explode: false
+              schema:
+                type: number
+            Cache-Control:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "no-cache, private"
+            Date:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: "Fri, 24 Jan 2025 05:22:28 GMT"
+            Content-Type:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: application/json
+            Access-Control-Allow-Origin:
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: object
+                x-content-type: application/json
+              example:
+                id: 1
+                receipt: NOTA_1
+                customer_id: 2
+                total: 30000
+                created_at: 2025-01-23T18:41:38.000000Z
+                updated_at: 2025-01-23T18:41:38.000000Z
+                details:
+                - id: 1
+                  transaction_id: 1
+                  product_id: 2
+                  price: 15000
+                  quantity: 2
+                  subtotal: 30000
+                  created_at: 2025-01-23T18:41:38.000000Z
+                  updated_at: 2025-01-23T18:41:38.000000Z
+                  product:
+                    id: 2
+                    code: BRG_1
+                    name: PEN
+                    category: ATK
+                    price: 15000
+                    created_at: 2025-01-23T18:25:50.000000Z
+                    updated_at: 2025-01-23T18:25:50.000000Z
+                customer:
+                  id: 2
+                  code: PELANGGAN_1
+                  name: ANDI
+                  address: JAK-UT
+                  gender: male
+                  created_at: 2025-01-23T18:22:56.000000Z
+                  updated_at: 2025-01-23T18:22:56.000000Z
+      x-swagger-router-controller: TransactionPenjualan
+  /api/stats:
+    get:
+      tags:
+      - default
+      summary: Stats
+      operationId: apiStatsGET
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Default
+components:
+  schemas: {}
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
